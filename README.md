@@ -1,3 +1,5 @@
 # Agentic AI
 
-Agents created with OpenAI Agents SDK, CrewAI, and MCP.
+All things related to agentic AI
+
+You'll find CrewAI projects in `crewai/` and OpenAI Agents SDK projects in `openai_agents_sdk/`, etc.
