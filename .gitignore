@@ -98,7 +98,7 @@ ipython_config.py
 #   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
 #   This is especially recommended for binary packages to ensure reproducibility, and is more
 #   commonly ignored for libraries.
-#uv.lock
+uv.lock
 
 # poetry
 #   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
@@ -177,7 +177,7 @@ cython_debug/
 .DS_Store
 
 # Ignore Crew engineering team output
-2_engineering_team/engineering_team/output/
+crewai/my_team/output/
 
 # Ignore Accounts database in capstone project
 3_trading_floor/accounts.db
