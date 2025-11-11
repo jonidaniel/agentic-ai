@@ -2,9 +2,7 @@ import os
 
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from crewai_tools import CodeInterpreterTool
-# from crewai.project.annotations import agent, crew, task
-# from crewai.project.crew_base import CrewBase
+#from crewai_tools import CodeInterpreterTool
 
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
@@ -26,6 +24,15 @@ class MyTeam():
     # If you would like to add tools to your agents, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
+    def engineering_lead(self) -> Agent:
+        return Agent(
+            model=os.getenv("MODEL"),
+            api_key=os.getenv("OPENAI_API_KEY"),
+            config=self.agents_config['engineering_lead'],
+            verbose=True
+        )
+
+    @agent
     def backend_engineer(self) -> Agent:
         return Agent(
             model=os.getenv("MODEL"),
@@ -39,13 +46,54 @@ class MyTeam():
             verbose=True
         )
 
+    @agent
+    def frontend_engineer(self) -> Agent:
+        return Agent(
+            model=os.getenv("MODEL"),
+            api_key=os.getenv("OPENAI_API_KEY"),
+            config=self.agents_config['frontend_engineer'],
+            verbose=True
+        )
+
+    @agent
+    def test_engineer(self) -> Agent:
+        return Agent(
+            model=os.getenv("MODEL"),
+            api_key=os.getenv("OPENAI_API_KEY"),
+            config=self.agents_config['test_engineer'],
+            #allow_code_execution=True,
+            #code_execution_mode="safe", # Use Docker for safety
+            #tools=run_codes,
+            max_execution_time=500,
+            max_retry_limit=3,
+            verbose=True
+        )
+
     # To learn more about structured task outputs,
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
     @task
+    def design_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['design_task'],
+        )
+
+    @task
     def code_task(self) -> Task:
         return Task(
             config=self.tasks_config['code_task'],
+        )
+
+    @task
+    def frontend_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['frontend_task'],
+        )
+
+    @task
+    def test_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['test_task'],
         )
 
     @crew
