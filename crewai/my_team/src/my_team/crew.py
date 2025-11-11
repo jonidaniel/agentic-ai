@@ -1,12 +1,16 @@
+import os
+
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-import os
+from crewai_tools import CodeInterpreterTool
 # from crewai.project.annotations import agent, crew, task
 # from crewai.project.crew_base import CrewBase
 
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
+
+#run_codes = CodeInterpreterTool(unsafe_mode=True)
 
 @CrewBase
 class MyTeam():
@@ -27,11 +31,12 @@ class MyTeam():
             model=os.getenv("MODEL"),
             api_key=os.getenv("OPENAI_API_KEY"),
             config=self.agents_config['backend_engineer'],
-            verbose=True,
             #allow_code_execution=True,
             #code_execution_mode="safe", # Use Docker for safety
+            #tools=run_codes,
             max_execution_time=500,
-            max_retry_limit=3
+            max_retry_limit=3,
+            verbose=True
         )
 
     # To learn more about structured task outputs,
