@@ -2,4 +2,10 @@
 
 All things related to agentic AI
 
-You'll find CrewAI projects in `crewai/` and OpenAI Agents SDK projects in `openai_agents_sdk/`, etc.
+`autonomous_traders_with_mcp` Autonomous market trader project utilizing MCP
+
+`crewai/` CrewAI projects
+
+`langchain/` LnagChain projects
+
+`openai_agents_sdk/` OpenAI Agents SDK projects
