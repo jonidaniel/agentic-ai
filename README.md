@@ -6,6 +6,6 @@ All things related to agentic AI
 
 `crewai/` CrewAI projects
 
-`langchain/` LnagChain projects
+`langchain/` LangChain projects
 
 `openai_agents_sdk/` OpenAI Agents SDK projects
